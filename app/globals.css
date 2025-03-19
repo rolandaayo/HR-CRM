@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+    
+    --card: 223 47% 14%;
+    --card-foreground: 213 31% 91%;
+    
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20% 65%;
+    
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 217 91% 60%;
+    
+    --muted: 223 47% 14%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 11%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 224 71% 4%;
+    
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.glass-card {
+  @apply relative overflow-hidden rounded-xl border bg-card/50 backdrop-blur-sm;
+}
+
+.glass-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50;
+}
+
+.sidebar-link {
+  @apply flex items-center space-x-2 p-2 rounded-lg transition-all duration-200 hover:bg-primary/20;
+}
+
+.sidebar-link.active {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.dashboard-card {
+  @apply glass-card p-6 transition-all duration-200 hover:bg-card/80;
+}
+
+.candidate-card {
+  @apply glass-card p-6 cursor-pointer transition-all duration-200 hover:bg-card/80;
+}
+
+.candidate-card::after {
+  content: '';
+  @apply absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-primary/50 to-primary opacity-0 transition-opacity duration-200;
+}
+
+.candidate-card:hover::after {
+  @apply opacity-100;
+}
+
+.interview-card {
+  @apply glass-card p-6 transition-all duration-200 hover:bg-card/80;
+}
+
+.status-badge {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+}
+
+.status-badge.new {
+  @apply bg-blue-400/20 text-blue-400;
+}
+
+.status-badge.in-review {
+  @apply bg-yellow-400/20 text-yellow-400;
+}
+
+.status-badge.scheduled {
+  @apply bg-green-400/20 text-green-400;
+}
+
+.match-score {
+  @apply flex items-center space-x-2 text-sm font-medium;
+}
+
+.match-score-bar {
+  @apply h-2 rounded-full bg-primary/20;
+}
+
+.match-score-fill {
+  @apply h-full rounded-full bg-primary transition-all duration-300;
+}
+
+.glow {
+  @apply relative;
+}
+
+.glow::before {
+  content: '';
+  @apply absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary opacity-0 blur transition duration-200;
+}
+
+.glow:hover::before {
+  @apply opacity-100;
+}
+
+.chart-container {
+  @apply glass-card p-6;
+}
+
+.notification-dot {
+  @apply absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-primary;
+}
+
+.gradient-border {
+  @apply relative rounded-xl bg-background p-[1px] before:absolute before:inset-0 before:rounded-xl before:p-[1px] before:bg-gradient-to-r before:from-primary/50 before:to-primary before:opacity-0 before:transition-opacity before:duration-200 hover:before:opacity-100;
+}
+
+.gradient-border > * {
+  @apply relative rounded-[11px] bg-card z-10;
+}
+
+.scrollbar-custom {
+  @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-primary/20 hover:scrollbar-thumb-primary/30;
+}
